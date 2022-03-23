@@ -1,104 +1,315 @@
 package com.example.calculator;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class CalculatorController {
 
+    public TextField txtcalc;
+    public Button btnZero;
+    public Button btnOne;
+    public Button btnTwo;
+    public Button btnThree;
+    public Button btnFour;
+    public Button btnFive;
+    public Button btnSix;
+    public Button btnSeven;
+    public Button btnEight;
+    public Button btnNine;
+    public Button btnSqrt;
+    public Button btnMinus;
+    public Button btnPlus;
+    public Button btnTimes;
+    public Button btnDevide;
+    public Button btnEqual;
+    public Button btnDot;
+    public GridPane calcBackground;
+    String num;
+    double num1;
+    double num2;
+    String operator = "";
+    boolean sqrtRoot = false;
+    boolean secondNum = false;
+    String[] splitNum;
+
     @FXML
     private void btnzeroclicked() {
-        var one = 1;
+        refreshText("0");
     }
 
     @FXML
     private void btnoneclicked() {
-        var one = 1;
+        refreshText("1");
     }
 
     @FXML
     private void btntwoclicked() {
-        var one = 1;
+        refreshText("2");
     }
 
     @FXML
     private void btnthreeclicked() {
-        var one = 1;
+        refreshText("3");
     }
 
     @FXML
     private void btnfourclicked() {
-        var one = 1;
+        refreshText("4");
     }
 
     @FXML
     private void btnfiveclicked() {
-        var one = 1;
+        refreshText("5");
     }
 
     @FXML
     private void btnsixclicked() {
-        var one = 1;
+        refreshText("6");
     }
 
     @FXML
     private void btnsevenclicked() {
-        var one = 1;
+        refreshText("7");
     }
 
     @FXML
     private void btneightclicked() {
-        var one = 1;
+        refreshText("8");
     }
 
     @FXML
     private void btnnineclicked() {
-        var one = 1;
+        refreshText("9");
     }
+
 
     @FXML
     private void btnplusclicked() {
-        var one = 1;
+        if (!secondNum && !Objects.equals(txtcalc.getText(), "")) {
+            operator = "\\+";
+            secondNum = true;
+            refreshText("+");
+        }
     }
 
     @FXML
     private void btnminusclicked() {
-        var one = 1;
+        if (!secondNum && !Objects.equals(txtcalc.getText(), "")) {
+            operator = "\\-";
+            secondNum = true;
+            refreshText("-");
+        }
     }
 
     @FXML
     private void btntimesclicked() {
-        var one = 1;
+        if (!secondNum && !Objects.equals(txtcalc.getText(), "")) {
+            operator = "\\*";
+            secondNum = true;
+            refreshText("*");
+        }
     }
+
 
     @FXML
     private void btndevidedclicked() {
-        var one = 1;
+        if (!secondNum && !Objects.equals(txtcalc.getText(), "")) {
+            operator = "\\/";
+            secondNum = true;
+            refreshText("/");
+        }
     }
 
     @FXML
     private void btndotclicked() {
-        var one = 1;
-    }
+        num = txtcalc.getText();
+        if (!secondNum) {
+            if (!num.contains(".") && !(num.isEmpty())) {
+                refreshText(".");
+            }
 
+        } else {
+            splitNum = num.split(operator, 2);
+            if (!(String.valueOf(splitNum[1]).contains(".")) && !(String.valueOf(splitNum[1]).isEmpty())) {
+                refreshText(".");
+            }
+        }
+    }
     @FXML
     private void btnclearclicked() {
-        var one = 1;
+        num = "";
+        num1 = 0.0;
+        num2 = 0.0;
+        operator = "";
+        sqrtRoot = false;
+        secondNum = false;
+        txtcalc.setText("");
     }
 
     @FXML
     private void btnsqrtclicked() {
-        var one = 1;
+        try {
+            if (!secondNum) {
+                num = txtcalc.getText();
+                txtcalc.setText(String.valueOf(Math.sqrt(Double.parseDouble(num))));
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
     private void btntoggleclicked() {
-        var one = 1;
+        txtcalc.setText("not implemented");
+    }
+
+
+
+    public void setGlobalKeyPressed(Scene scene) {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch (keyEvent.getCode()) {
+                    case DIGIT0:
+                        btnZero.fire();
+
+                        break;
+                    case DIGIT1:
+                        btnOne.fire();
+
+                        break;
+                    case DIGIT2:
+                        btnTwo.fire();
+
+                        break;
+                    case DIGIT3:
+                        btnThree.fire();
+
+                        break;
+                    case DIGIT4:
+                        btnFour.fire();
+
+                        break;
+                    case DIGIT5:
+                        btnFive.fire();
+
+                        break;
+                    case DIGIT6:
+                        btnSix.fire();
+
+                        break;
+                    case DIGIT7:
+                        btnSeven.fire();
+                        ;
+                    case DIGIT8:
+                        btnEight.fire();
+
+                        break;
+                    case DIGIT9:
+                        btnNine.fire();
+
+                        break;
+                    case PLUS:
+                        btnPlus.fire();
+
+                        break;
+                    case MINUS:
+                        btnMinus.fire();
+
+                        break;
+                    case MULTIPLY:
+                        btnTimes.fire();
+
+                        break;
+                    case DIVIDE:
+                        btnDevide.fire();
+
+                        break;
+                    case ENTER:
+                        btnEqual.fire();
+
+                        break;
+                    case PERIOD:
+                        btnDot.fire();
+
+                        break;
+
+                }
+                keyEvent.consume();
+                btnEqual.requestFocus();
+
+            }
+        });
+    }
+
+    private void refreshText(String calc) {
+        txtcalc.appendText(calc);
+        btnEqual.requestFocus();
+
     }
 
     @FXML
     private void btnequalsclicked() {
-        var one = 1;
+        if (secondNum) {
+            try {
+                num = txtcalc.getText();
+                splitNum = num.split(operator, 2);
+                num1 = Double.parseDouble(splitNum[0]);
+                num2 = Double.parseDouble(splitNum[1]);
+                secondNum = false;
+                sqrtRoot = false;
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            switch (operator) {
+                case "\\+":
+                    num = String.valueOf(num1 + num2);
+                    break;
+                case "\\-":
+                    num = String.valueOf(num1 - num2);
+                    break;
+                case "\\*":
+                    num = String.valueOf(num1 * num2);
+                    break;
+                case "\\/":
+                    num = String.valueOf(num1 / num2);
+                    break;
+            }
+            txtcalc.setText(num);
+
+
+        }
+
+
     }
+    public void getFocus(){
+        btnEqual.requestFocus();
+    }
+    @FXML
+    private void backGroundWindow() throws IOException {
+        Stage backgroundWindow = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Calculator.class.getResource("backgroundcolor.fxml"));
 
+        fxmlLoader.setController(new ColorPickerController(calcBackground));
+        Scene scene = new Scene(fxmlLoader.load(), 340, 180);
 
+        backgroundWindow.initModality(Modality.APPLICATION_MODAL);
+        backgroundWindow.setScene(scene);
+        backgroundWindow.setTitle("Background Color");
+        backgroundWindow.setResizable(true);
+        backgroundWindow.show();
+    }
 }
