@@ -1,11 +1,11 @@
 package com.example.calculator;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 
 public class ColorPickerController {
-    private GridPane calcBackground;
-    public ColorPickerController(GridPane grid){
+    private BorderPane calcBackground;
+    public ColorPickerController(BorderPane grid){
         this.calcBackground = grid;
     }
     @FXML

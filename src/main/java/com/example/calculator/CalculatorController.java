@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -35,7 +35,7 @@ public class CalculatorController {
     public Button btnDevide;
     public Button btnEqual;
     public Button btnDot;
-    public GridPane calcBackground;
+    public BorderPane calcBackground;
     String num;
     double num1;
     double num2;
@@ -301,10 +301,10 @@ public class CalculatorController {
     @FXML
     private void backGroundWindow() throws IOException {
         Stage backgroundWindow = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Calculator.class.getResource("backgroundcolor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Calculator.class.getResource("colorChanger.fxml"));
 
         fxmlLoader.setController(new ColorPickerController(calcBackground));
-        Scene scene = new Scene(fxmlLoader.load(), 340, 180);
+        Scene scene = new Scene(fxmlLoader.load());
 
         backgroundWindow.initModality(Modality.APPLICATION_MODAL);
         backgroundWindow.setScene(scene);
