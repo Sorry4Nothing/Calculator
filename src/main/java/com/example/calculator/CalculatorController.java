@@ -183,49 +183,62 @@ public class CalculatorController {
             @Override
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()) {
+                    case NUMPAD0:
                     case DIGIT0:
                         btnZero.fire();
 
                         break;
+                    case NUMPAD1:
                     case DIGIT1:
                         btnOne.fire();
 
                         break;
+                    case NUMPAD2:
                     case DIGIT2:
                         btnTwo.fire();
 
                         break;
+                    case NUMPAD3:
                     case DIGIT3:
                         btnThree.fire();
 
                         break;
+                    case NUMPAD4:
                     case DIGIT4:
                         btnFour.fire();
 
                         break;
+                    case NUMPAD5:
                     case DIGIT5:
                         btnFive.fire();
 
                         break;
+                    case NUMPAD6:
                     case DIGIT6:
                         btnSix.fire();
 
                         break;
+                    case NUMPAD7:
                     case DIGIT7:
                         btnSeven.fire();
-                        ;
+
+                        break;
+                    case NUMPAD8:
                     case DIGIT8:
                         btnEight.fire();
 
                         break;
+                    case NUMPAD9:
                     case DIGIT9:
                         btnNine.fire();
 
                         break;
+                    case ADD:
                     case PLUS:
                         btnPlus.fire();
 
                         break;
+                    case SUBTRACT:
                     case MINUS:
                         btnMinus.fire();
 
@@ -242,6 +255,7 @@ public class CalculatorController {
                         btnEqual.fire();
 
                         break;
+                    case DECIMAL:
                     case PERIOD:
                         btnDot.fire();
 
